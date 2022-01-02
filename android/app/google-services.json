@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "545858192431",
+    "project_id": "login-midias-sociais",
+    "storage_bucket": "login-midias-sociais.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545858192431:android:1e482499da35b9b23772da",
+        "android_client_info": {
+          "package_name": "com.estudo.flutter_firebase_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545858192431-g9jq79u15b90uapkjbihuthphg9gs3ee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATsSaagI35OVt-qLGY7xKTHva6WkHd-lc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545858192431-g9jq79u15b90uapkjbihuthphg9gs3ee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
