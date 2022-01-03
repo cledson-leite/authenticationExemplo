@@ -1,0 +1,8 @@
+<resources>
+
+  <string name="app_name">Login Midia Sociais</string>
+
+  <string name="facebook_app_id">665138161509114</string>
+  <string name="fb_login_protocol_scheme">fb665138161509114</string>
+
+</resources>

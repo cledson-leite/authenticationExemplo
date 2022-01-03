@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'forgot_page.dart';
 import 'signup_page.dart';
+import 'user_facebook_page.dart';
 import 'user_google_page.dart';
 import 'user_page.dart';
 
@@ -19,6 +21,8 @@ class _LoginPageState extends State<LoginPage> {
 
   String email = '';
   String password = '';
+
+  Map<String, dynamic> user = {};
 
   _userLogin() async {
     try {
@@ -43,6 +47,19 @@ class _LoginPageState extends State<LoginPage> {
           textAlign: TextAlign.center,
         ),
       ));
+    }
+  }
+
+  Future<void> _facebookLogin() async {
+    LoginResult result = await FacebookAuth.i.login(
+      permissions: ['public_profile', 'email'],
+    );
+
+    if (result.status == LoginStatus.success) {
+      final Map<String, dynamic> result = await FacebookAuth.i.getUserData(
+        fields: 'email, name, picture.type(large)',
+      );
+      user = result;
     }
   }
 
@@ -153,6 +170,17 @@ class _LoginPageState extends State<LoginPage> {
                   final user = await GoogleSignIn().signIn();
                   Navigator.push(context,
                       MaterialPageRoute(builder: (_) => UserGooglePage(user!)));
+                },
+              ),
+              ElevatedButton(
+                child: Text(
+                  'Facebook',
+                  style: TextStyle(fontSize: 18),
+                ),
+                onPressed: () async {
+                  await _facebookLogin();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => UserFacebookPage(user)));
                 },
               ),
               TextButton(
