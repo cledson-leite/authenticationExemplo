@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'forgot_page.dart';
 import 'signup_page.dart';
+import 'user_google_page.dart';
 import 'user_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -58,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8),
-                child: Image.asset('images/login.jpg'),
+                child: Image.asset('images/login.jpg', height: 150),
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
@@ -142,6 +144,17 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
+              ElevatedButton(
+                child: Text(
+                  'Google',
+                  style: TextStyle(fontSize: 18),
+                ),
+                onPressed: () async {
+                  final user = await GoogleSignIn().signIn();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => UserGooglePage(user!)));
+                },
+              ),
               TextButton(
                 child: Text(
                   'Ainda não tem conta?',
@@ -151,8 +164,10 @@ class _LoginPageState extends State<LoginPage> {
                   Navigator.pushAndRemoveUntil(
                     context,
                     PageRouteBuilder(
-                      pageBuilder: (ctx, _, __) => SignupPage(), transitionDuration: Duration(seconds: 0)), (route) => false,
-                    );
+                        pageBuilder: (ctx, _, __) => SignupPage(),
+                        transitionDuration: Duration(seconds: 0)),
+                    (route) => false,
+                  );
                 },
               ),
             ],
